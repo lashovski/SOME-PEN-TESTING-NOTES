@@ -1,0 +1,23 @@
+CROSS SITE SCRIPTING: (WE USE METASPLOITABLE2 VM HERE) (IT HAS IT'S OWN WEBSITES)
+
+Cross-Site Scripting (XSS) is a security vulnerability that allows attackers to inject malicious scripts into trusted websites, which are then executed in the victim's browser.
+
+HOW TO TEST FOR  VULNERABILITIES:
+	In the typing field we can enter a script to create a simple alert and after 
+	submitting the information in the field it shoud pop up like an alert
+
+SCRIPT IN THE FIELD (EXAMPLE ALERT)
+	<script>alert("i hacked you!")</script> 
+	(KNOWN ALSO LIKE "REFLECTED XSS")
+
+STORED SCRIPT:
+	The same thing here; After injecting the script it can be stored for example in a 	comment page of the website and after somebody opens this injected commend the script 	alert message will appear for him "i hacked you!" 
+	(KNOWN ALSO LIKE "STORED XSS")
+
+
+EXAMPLE ATTACK USING "BEEF"
+
+1.) Open beef and wait for the browser appearing and login
+2.) Get the "Example" from the beef starting terminal and copy it!
+3.) Go to the metasploitable2 website and try injecting the url in some message box (If there is a limit for the 	simbols inside the box use "inspect" and overwrite the code field to bypass it
+4.) Then submit the "comment" or "message" and go back to beef (NOW YOU ARE READY AND EVERY TIME THE VICTIM GOES TO 	THIS MESSAGE IT WILL BE HOOCKED!

